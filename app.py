@@ -23,7 +23,7 @@ def get_weather():
     if response.ok:
         data = response.json()
         temperature = data['main']['temp']
-        return f"The temperature in {city} is {temperature}°C"
+        return f"Hello! This is my weather app." "The temperature in {city} is {temperature}°C"
     else:
         return "Sorry, no weather report found!"
 
