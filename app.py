@@ -8,6 +8,7 @@ API_KEY = '035d0705de3268331f77680311793506'
 @app.route('/')
 def home():
     return """
+    <h1>Hello! This is my weather app.</h1>
     <form action="/weather">
         <input type="text" name="city" placeholder="Enter city name">
         <button type="submit">Get Weather</button>
@@ -23,7 +24,7 @@ def get_weather():
     if response.ok:
         data = response.json()
         temperature = data['main']['temp']
-        return f"Hello! This is my weather app." "The temperature in {city} is {temperature}°C"
+        return f"The temperature in {city} is {temperature}°C"
     else:
         return "Sorry, no weather report found!"
 
