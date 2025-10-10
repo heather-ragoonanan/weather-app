@@ -1,20 +1,31 @@
-version: 0.2
+name: CI
 
-phases:
-  install:
-    runtime-versions:
-      python: 3.9
-  pre_build:
-    commands:
-      - echo "Installing dependencies..."
-      - pip install -r requirements.txt
+on:
+  push:
+    branches: [ main ]
+
+jobs:
   build:
-    commands:
-      - echo "Running tests..."
-      - python -m pytest
-      - echo "Building Docker image..."
-      - docker build -t weather-app .
-  post_build:
-    commands:
-      - echo "Build completed"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run tests
+      run: |
+        python -m pytest
+        
+    - name: Build Docker image
+      run: |
+        docker build -t weather-app .
 
