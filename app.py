@@ -26,7 +26,7 @@ def get_weather():
         temperature = data['main']['temp']
         return f"The temperature in {city} is {temperature}°C"
     else:
-        return "Sorry, no weather report found!"
+        return "Sorry, I cannot retrieve the weather results!"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
